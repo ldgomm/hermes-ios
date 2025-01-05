@@ -1,0 +1,80 @@
+/*
+  Localizable.strings
+  Hermes
+
+  Created by José Ruiz on 26/8/24.
+  
+*/
+
+//Authentication
+"privacy_protection_message" = "We will always protect your privacy";
+"login_as_anonymous" = "Log in as anonymous";
+
+//Cart
+"cart_empty_message" = "There are no products in the cart";
+"cart_title" = "Cart";
+"price_label" = "Price";
+"stock_label" = "Stock";
+
+//Chats
+"chat_gpt_title" = "Talk to ChatGPT";
+"chat_gpt_subtitle" = "I will answer queries about tech products and check stock availability";
+"chats_title" = "Chats";
+"no_store_name" = "No name for store";
+"placeholder_type_a_message" = "Type a message...";
+"category_label" = "Category";
+"origin_label" = "Origin";
+"stock_label" = "Stock";
+"discount_label" = "Discount";
+"specifications_label" = "Specifications";
+"colours_label" = "Colours";
+"finished_label" = "Finished";
+"size_label" = "Size";
+"weight_label" = "Weight";
+"overview_label" = "Overview";
+"warranty_label" = "Warranty";
+"warranty_available_label" = "Warranty Available";
+"yes_label" = "Yes";
+"no_label" = "No";
+"months_label" = "Months";
+"details_label" = "Details";
+"store_information_sheet_label" = "Store information .sheet";
+"request_product_label" = "Request product from";
+"message_sent_title" = "Message Sent";
+"message_sent_body" = "Your message has been sent to the store.";
+"ok_label" = "OK";
+"interest_message" = "Hello, I am interested in this product";
+"search_radius_message" = "Your search will be performed within a radius of %d km";
+"distance_label" = "Distance";
+"search_distance_tip_title" = "Search Distance Tip";
+"search_distance_tip_body" = "Try to keep the search distance as short as possible to get better results.";
+"edit_location_button" = "Edit Location";
+"low_distance_limit_message" = "You have reached the lowest distance limit.";
+"high_distance_limit_message" = "You have reached the highest distance limit.";
+"be_yourself_placeholder" = "Be yourself...";
+"view_store_on_map" = "View store on map";
+"view_stores_on_map" = "View stores on map";
+"you_are_here_label" = "You are here";
+"close_button_label" = "Close";
+
+
+//Settings
+"searching_within_distance" = "Searching within %d km";
+"show_map_button" = "Show map";
+"cancel_button" = "Cancel";
+"save_button" = "Save";
+"confirm_update_title" = "Confirm Data Update";
+"confirm_update_message" = "Do you want to update your data?";
+"yes_button" = "Yes";
+"privacy_message" = "We don’t have any of your information. We will always respect your privacy.";
+"edit_button_label" = "Edit";
+
+
+//Date
+
+"today" = "today";
+"yesterday" = "yerterday";
+
+"price_section_title" = "Price";
+"off_label" = "OFF";
+"legal_label" = "Legal";

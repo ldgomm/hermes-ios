@@ -1,0 +1,79 @@
+/*
+  Localizable.strings
+  Hermes
+
+  Created by José Ruiz on 26/8/24.
+  
+*/
+
+//Autenticación
+"privacy_protection_message" = "Siempre protegeremos tu privacidad";
+"login_as_anonymous" = "Iniciar sesión como anónimo";
+
+//Carrito
+"cart_empty_message" = "No hay productos en el carrito";
+"cart_title" = "Carrito";
+"price_label" = "Precio";
+"stock_label" = "Stock";
+
+//Chats
+"chat_gpt_title" = "Habla con ChatGPT";
+"chat_gpt_subtitle" = "Responderé consultas sobre productos tecnológicos y verificaré la disponibilidad de stock";
+"chats_title" = "Chats";
+"no_store_name" = "Sin nombre de tienda";
+"placeholder_type_a_message" = "Escribe un mensaje...";
+"category_label" = "Categoría";
+"origin_label" = "Origen";
+"stock_label" = "Stock";
+"discount_label" = "Descuento";
+"specifications_label" = "Especificaciones";
+"colours_label" = "Colores";
+"finished_label" = "Finalizado";
+"size_label" = "Tamaño";
+"weight_label" = "Peso";
+"overview_label" = "Resumen";
+"warranty_label" = "Garantía";
+"warranty_available_label" = "Garantía Disponible";
+"yes_label" = "Sí";
+"no_label" = "No";
+"months_label" = "Meses";
+"details_label" = "Detalles";
+"store_information_sheet_label" = "Hoja de información de la tienda";
+"request_product_label" = "Solicitar producto de";
+"message_sent_title" = "Mensaje Enviado";
+"message_sent_body" = "Tu mensaje ha sido enviado a la tienda.";
+"ok_label" = "OK";
+"interest_message" = "Hola, estoy interesado en este producto";
+"search_radius_message" = "Tu búsqueda se realizará dentro de un radio de %d km";
+"distance_label" = "Distancia";
+"search_distance_tip_title" = "Consejo de Distancia de Búsqueda";
+"search_distance_tip_body" = "Intenta mantener la distancia de búsqueda lo más corta posible para obtener mejores resultados.";
+"edit_location_button" = "Editar Ubicación";
+"low_distance_limit_message" = "Has alcanzado el límite inferior de distancia.";
+"high_distance_limit_message" = "Has alcanzado el límite superior de distancia.";
+"be_yourself_placeholder" = "Sé tú mismo...";
+"view_store_on_map" = "Ver tienda en el mapa";
+"view_stores_on_map" = "Ver tiendas en el mapa";
+"you_are_here_label" = "Estás aquí";
+"close_button_label" = "Cerrar";
+
+
+//Configuración
+"searching_within_distance" = "Buscando dentro de %d km";
+"show_map_button" = "Mostrar mapa";
+"cancel_button" = "Cancelar";
+"save_button" = "Guardar";
+"confirm_update_title" = "Confirmar Actualización de Datos";
+"confirm_update_message" = "¿Deseas actualizar tus datos?";
+"yes_button" = "Sí";
+"privacy_message" = "No tenemos ninguna de tu información. Siempre respetaremos tu privacidad.";
+"edit_button_label" = "Editar";
+
+
+//Fecha
+"today" = "hoy";
+"yesterday" = "ayer";
+
+"price_section_title" = "Precio";
+"off_label" = "OFF";
+"legal_label" = "Legal";
