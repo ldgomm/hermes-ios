@@ -13,18 +13,14 @@
 //Carrito
 "cart_empty_message" = "No hay productos en el carrito";
 "cart_title" = "Carrito";
-"price_label" = "Precio";
 "stock_label" = "Stock";
 
 //Chats
-"chat_gpt_title" = "Habla con ChatGPT";
 "chat_gpt_subtitle" = "Responderé consultas sobre productos tecnológicos y verificaré la disponibilidad de stock";
-"chats_title" = "Chats";
-"no_store_name" = "Sin nombre de tienda";
+"chats_title" = "Conversaciones";
 "placeholder_type_a_message" = "Escribe un mensaje...";
 "category_label" = "Categoría";
 "origin_label" = "Origen";
-"stock_label" = "Stock";
 "discount_label" = "Descuento";
 "specifications_label" = "Especificaciones";
 "colours_label" = "Colores";
@@ -40,8 +36,6 @@
 "details_label" = "Detalles";
 "store_information_sheet_label" = "Hoja de información de la tienda";
 "request_product_label" = "Solicitar producto de";
-"message_sent_title" = "Mensaje Enviado";
-"message_sent_body" = "Tu mensaje ha sido enviado a la tienda.";
 "ok_label" = "OK";
 "interest_message" = "Hola, estoy interesado en este producto";
 "search_radius_message" = "Tu búsqueda se realizará dentro de un radio de %d km";
@@ -77,3 +71,227 @@
 "price_section_title" = "Precio";
 "off_label" = "OFF";
 "legal_label" = "Legal";
+
+"chats_title" = "Chats";
+"chat_gpt_title" = "ChatGPT";
+"chat_gpt_subtitle" = "Tu asistente impulsado por IA";
+"profile_button" = "Perfil";
+"profile_button_hint" = "Abrir perfil de usuario";
+"unknown_store" = "Tienda desconocida";
+
+"store_image" = "Imagen de la tienda";
+"placeholder_store_image" = "Imagen de marcador de posición para la tienda";
+"unread_messages_count" = "%d mensajes no leídos";
+
+"chat_item_image" = "Icono del elemento de chat";
+"chat_item_title" = "Título del chat";
+"chat_item_subtitle" = "Subtítulo del chat";
+"chat_item_date" = "Fecha del chat";
+"verified_chat" = "Chat verificado";
+
+"message_type_image" = "Mensaje de imagen";
+"message_type_video" = "Mensaje de video";
+"message_type_audio" = "Mensaje de audio";
+"message_type_file" = "Mensaje de archivo";
+"product_details" = "Ver detalles del producto";
+
+"message_date_label" = "Fecha del mensaje: %@";
+"message_type_image" = "Mensaje de imagen";
+"message_type_video" = "Mensaje de video";
+"message_type_audio" = "Mensaje de audio";
+"message_type_file" = "Mensaje de archivo";
+
+"date_label" = "Mensajes del %@";
+
+"placeholder_type_a_message" = "Escribe un mensaje...";
+"input_message_label" = "Campo de entrada de mensajes";
+"input_message_hint" = "Escribe tu mensaje aquí";
+"send_button_label" = "Botón de enviar mensaje";
+"send_button_hint" = "Envía el mensaje escrito";
+
+"image_load_failed" = "Error al cargar la imagen";
+
+"loading_image" = "Cargando imagen...";
+"image_loaded" = "Imagen cargada correctamente";
+"title" = "Título";
+"subtitle" = "Subtítulo";
+"expand_card_hint" = "Toca para expandir la tarjeta y ver más detalles";
+
+"loading_product_image" = "Cargando imagen del producto...";
+"product_image_loaded" = "Imagen del producto cargada con éxito";
+"product_image_failed" = "Error al cargar la imagen del producto";
+"loading_store_image" = "Cargando imagen de la tienda...";
+"store_image" = "Imagen de la tienda";
+"store_image_expanded" = "Imagen de la tienda ampliada";
+"store_image_failed" = "Error al cargar la imagen de la tienda";
+"store_name_label" = "Nombre de la tienda";
+"product_category_label" = "Categoría del producto";
+
+"price_label" = "Precio";
+"original_price_label" = "Precio original";
+"discount_text" = "Descuento: %d%%";
+"discounted_price_label" = "Precio con descuento: %.2f";
+"regular_price_label" = "Precio";
+"label_label" = "Etiqueta";
+"label_text" = "Etiqueta: %@";
+"owner_label" = "Propietario";
+"owner_text" = "Propietario: %@, Año: %d";
+"model_label" = "Modelo";
+"model_text" = "Modelo: %@";
+"description_label" = "Descripción";
+"description_text" = "Descripción: %@";
+"information_label" = "Información";
+"overview_card" = "Tarjeta de información: %@";
+"details_label" = "Detalles";
+"stock_label" = "Stock";
+"stock_text" = "Stock: %d";
+"origin_label" = "Origen";
+"origin_text" = "Origen: %@";
+"keywords_label" = "Palabras clave";
+"keywords_text" = "Palabras clave: %@";
+
+"specifications_label" = "Especificaciones";
+"colours_label" = "Colores";
+"finished_label" = "Acabado";
+"in_box_label" = "En la Caja";
+"size_label" = "Tamaño";
+"weight_label" = "Peso";
+"warranty_label" = "Garantía";
+"for_months_label" = "Garantía por %d meses";
+"warranty_details_label" = "Garantía por %d meses: %@";
+"legal_label" = "Información Legal";
+"legal_information_label" = "Información Legal";
+"warning_label" = "Advertencias";
+"warning_information_label" = "Información de Advertencia";
+"store_information_sheet_label" = "Información de la Tienda";
+"store_information_label" = "Información de la Tienda: %@";
+"request_product_label" = "Solicitar Producto de";
+"request_product_button_label" = "Solicitar producto de %@";
+"no_store_name" = "Nombre de la tienda no disponible";
+
+"add_to_cart_label" = "Agregar al carrito";
+"add_to_cart_hint" = "Agrega %@ a tu carrito";
+"message_sent_title" = "Mensaje Enviado";
+"message_sent_body" = "Tu mensaje se ha enviado con éxito.";
+"ok_label" = "Aceptar";
+"cancel_label" = "Cancelar";
+
+"interest_message" = "Estoy interesado en este producto. Por favor, proporcione más información.";
+
+"section_title" = "Sección";
+"example_section" = "Sección de ejemplo";
+
+"special_offer_card" = "Tarjeta de oferta especial de Navidad";
+"product_image" = "Imagen del producto";
+"placeholder_image" = "Imagen de marcador de posición para el producto";
+"product_name" = "Nombre del producto: %@";
+"product_label" = "Etiqueta del producto: %@";
+"store_name" = "Nombre de la tienda: %@";
+"no_store_name" = "No hay nombre de la tienda disponible";
+"distance_to_store" = "Distancia a la tienda: %.2f kilómetros";
+"discount_offer" = "Oferta de descuento: %d%% de descuento";
+"discounted_price" = "Precio con descuento: %@";
+"original_price" = "Precio original: %@";
+"regular_price" = "Precio: %@";
+
+"message_text" = "Mensaje: %@";
+"message_date" = "Fecha del mensaje: %@";
+"product_item" = "Producto: %@";
+"view_store_on_map" = "Ver tienda en el mapa";
+"view_stores_on_map" = "Ver tiendas en el mapa";
+"view_single_store_on_map" = "Toca para ver la tienda en el mapa";
+"view_multiple_stores_on_map" = "Toca para ver las tiendas en el mapa";
+
+"stores_map_sheet" = "Hoja que muestra tiendas en el mapa";
+"location_unavailable" = "La ubicación no está disponible";
+"location_error_message" = "La ubicación no está disponible para mostrar tiendas en el mapa";
+"product_view_sheet" = "Hoja que muestra detalles del producto";
+
+"user_location_label" = "Ubicación actual del usuario";
+"user_location_marker" = "Ubicación actual";
+"store_marker" = "Marcador para la tienda: %@";
+"close_button_label" = "Cerrar";
+"close_map_button" = "Cerrar la vista del mapa";
+"store_view_sheet" = "Detalles de la tienda: %@";
+
+"user_message_text" = "Mensaje del usuario: %@";
+"user_message_date" = "Fecha del mensaje: %@";
+
+"search_radius_message" = "Tu radio de búsqueda es de %d km.";
+"search_radius_accessibility" = "Radio de búsqueda: %d kilómetros.";
+"distance_label" = "Distancia:";
+"distance_stepper_accessibility" = "Ajusta la distancia de búsqueda con el stepper.";
+"reset_distance_button" = "Restablecer la distancia de búsqueda.";
+"location_unavailable_message" = "Tu ubicación no está disponible.";
+"distance_map_accessibility" = "Mapa que muestra la distancia de búsqueda.";
+"search_distance_tip_title" = "Consejo:";
+"search_distance_tip_body" = "Puedes ajustar el radio de búsqueda usando el stepper de arriba.";
+"edit_location_button" = "Editar ubicación";
+"edit_location_accessibility" = "Botón para editar la ubicación del usuario.";
+"edit_user_location_error" = "No se puede editar la ubicación porque faltan datos de ubicación.";
+"edit_user_location_error_accessibility" = "Mensaje de error que indica que faltan datos de ubicación.";
+
+"search_phrase_icon" = "Ícono que representa la frase de búsqueda";
+"search_phrase_text" = "Frase de búsqueda: %@";
+"select_search_phrase" = "Seleccionar esta frase de búsqueda";
+
+"day_header_label" = "Mensajes para %@";
+
+"be_yourself_placeholder" = "Escribe tu mensaje...";
+"text_input_accessibility" = "Campo para ingresar mensaje";
+"text_input_hint" = "Ingresa un mensaje para enviar";
+"send_button_accessibility" = "Botón para enviar mensaje";
+"send_button_hint" = "Toca para enviar tu mensaje";
+
+"show_map_button" = "Mostrar mapa";
+"show_map_accessibility" = "Botón para mostrar el mapa";
+"delete_all_messages" = "Eliminar todos los mensajes";
+"delete_all_messages_accessibility" = "Eliminar todos los mensajes";
+"message_menu_accessibility" = "Menú para gestionar mensajes";
+"map_view_accessibility" = "Vista del mapa";
+
+"cancel_button" = "Cancelar";
+"save_button" = "Guardar";
+"cancel_button_accessibility" = "Botón para cancelar la edición de la ubicación";
+"save_button_accessibility" = "Botón para guardar la ubicación editada";
+"confirm_update_title" = "Confirmar actualización";
+"confirm_update_message" = "¿Estás seguro de que deseas actualizar la ubicación?";
+"yes_button" = "Sí";
+
+"you_are_here_label" = "Estás aquí";
+"current_location_marker" = "Marcador para la ubicación actual del usuario";
+"interactive_map_accessibility" = "Mapa interactivo para seleccionar una ubicación";
+"invalid_map_tap" = "No se pudo determinar la ubicación seleccionada en el mapa";
+
+"you_are_here_label" = "Estás aquí";
+"current_location_marker" = "Marcador para la ubicación actual del usuario";
+"map_view_accessibility" = "Mapa interactivo que muestra la ubicación actual del usuario";
+
+"map_accessibility_label" = "Mapa que muestra la ubicación del usuario";
+"location_unavailable_message" = "Los datos de ubicación no están disponibles.";
+"location_unavailable_accessibility" = "Mensaje accesible para ubicación no disponible";
+"privacy_message" = "Tu privacidad es respetada y no se almacena información.";
+"privacy_message_accessibility" = "Mensaje accesible sobre privacidad";
+"edit_button_label" = "Editar";
+"edit_button_accessibility" = "Editar información del usuario";
+"settings_button_label" = "Configuración";
+"settings_button_accessibility" = "Abrir configuración";
+
+"edit_user_view_accessibility" = "Vista de edición de usuario";
+"missing_data_message" = "Faltan datos del usuario. Por favor, inténtalo de nuevo.";
+"missing_data_accessibility" = "Mensaje que se muestra cuando faltan datos del usuario";
+
+"settings_title" = "Configuración";
+"legal_section_title" = "Legal";
+"privacy_policy" = "Política de Privacidad";
+"privacy_policy_accessibility" = "Navegar a la página de Política de Privacidad";
+"terms_of_use" = "Términos de Uso";
+"terms_of_use_accessibility" = "Navegar a la página de Términos de Uso";
+"no_account_deletion" = "Sin Eliminación de Cuenta";
+"no_account_deletion_accessibility" = "Navegar a la página de Sin Eliminación de Cuenta";
+
+"section_title_accessibility" = "Título de la sección";
+"section_content_accessibility" = "Contenido de la sección";
+"privacy_policy_title" = "Política de Privacidad";
+"privacy_policy_description" = "Valoramos tu privacidad y aseguramos la protección de tus datos.";
+

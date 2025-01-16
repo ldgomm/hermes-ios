@@ -30,11 +30,11 @@ struct ConversationView: View {
                             Text(day.currentTimeMillis().formatShortHeadDate)
                                 .font(.caption)
                                 .padding(4)
-                                .padding(.horizontal, 4)
                                 .background(Color.teal.opacity(0.2))
                                 .cornerRadius(4)
                                 .frame(maxWidth: .infinity)
-                            
+                                .accessibilityLabel(String(format: NSLocalizedString("date_label", comment: "Date of messages"), day.currentTimeMillis().formatShortHeadDate))
+
                             // Display messages for the current day
                             ForEach(messages) { message in
                                 if message.fromClient {
@@ -56,46 +56,58 @@ struct ConversationView: View {
                                 }
                             }
                         }
-                        .onAppear {
-                            if let lastMessage = messages.last {
-                                withAnimation {
-                                    scrollView.scrollTo(lastMessage.id, anchor: .bottom)
-                                }
+                    }
+                    .onAppear {
+                        // Scroll to the last message when the view appears
+                        if let lastMessage = messages.last {
+                            withAnimation {
+                                scrollView.scrollTo(lastMessage.id, anchor: .bottom)
                             }
                         }
                     }
-                }
-                .onChange(of: messages.count) { _, _ in
-                    if let lastMessage = messages.last {
-                        withAnimation {
-                            scrollView.scrollTo(lastMessage.id, anchor: .bottom)
+                    .onChange(of: messages.count) { _, _ in
+                        // Automatically scroll to the last message when new messages are added
+                        if let lastMessage = messages.last {
+                            withAnimation {
+                                scrollView.scrollTo(lastMessage.id, anchor: .bottom)
+                            }
                         }
                     }
                 }
             }
+
             HStack {
-                TextField(NSLocalizedString("placeholder_type_a_message" , comment: "Placeholder text for input field"), text: $inputText)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
-                    .padding(.leading, 16)
-                    .padding(.trailing, !inputText.isEmpty ? 8 : 16)
-                    .onChange(of: inputText) { _, newValue in
-                        if newValue.isEmpty {
-                            withAnimation {
-                                showButton = false
-                            }
-                        } else {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                if !inputText.isEmpty {
-                                    withAnimation {
-                                        showButton = true
-                                    }
+                // Input field
+                TextField(
+                    NSLocalizedString("placeholder_type_a_message", comment: "Placeholder text for input field"),
+                    text: $inputText
+                )
+                .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(8)
+                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                .padding(.leading, 16)
+                .padding(.trailing, !inputText.isEmpty ? 8 : 16)
+                .onChange(of: inputText) { _, newValue in
+                    if newValue.isEmpty {
+                        withAnimation {
+                            showButton = false
+                        }
+                    } else {
+                        // Throttling to improve performance
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            if !inputText.isEmpty {
+                                withAnimation {
+                                    showButton = true
                                 }
                             }
                         }
                     }
+                }
+                .accessibilityLabel(NSLocalizedString("input_message_label", comment: "Input field for typing a message"))
+                .accessibilityHint(NSLocalizedString("input_message_hint", comment: "Type your message here"))
+
+                // Send button
                 if showButton {
                     Button {
                         withAnimation(.easeInOut(duration: 0.5)) {
@@ -108,11 +120,13 @@ struct ConversationView: View {
                             .frame(width: 40, height: 40)
                             .foregroundColor(.blue)
                             .padding(.trailing, 16)
-                            .transition(.scale.combined(with: .opacity))
                     }
                     .transition(.scale.combined(with: .opacity))
+                    .accessibilityLabel(NSLocalizedString("send_button_label", comment: "Send message button"))
+                    .accessibilityHint(NSLocalizedString("send_button_hint", comment: "Sends the typed message"))
                 }
             }
+
             .padding(.vertical, 16)
             .background(Color(.systemBackground))
             

@@ -32,21 +32,29 @@ struct SearchView: View {
                     VStack {
                         if messages.isEmpty {
                             Spacer()
+
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 20) {
                                     ForEach(searchPhrases) { phrase in
                                         VStack(alignment: .leading, spacing: 8) {
+                                            // Icon
                                             Image(systemName: phrase.icon)
                                                 .font(.title2)
                                                 .foregroundColor(Color.blue)
+                                                .accessibilityLabel(NSLocalizedString("search_phrase_icon", comment: "Icon representing the search phrase"))
+
                                             Spacer(minLength: 8)
+
+                                            // Phrase Text
                                             Text(phrase.text)
                                                 .font(.subheadline)
                                                 .lineLimit(3)
                                                 .multilineTextAlignment(.leading)
+                                                .accessibilityLabel(String(format: NSLocalizedString("search_phrase_text", comment: "Search phrase: %@"), phrase.text))
                                         }
                                         .padding()
                                         .frame(width: 180)
+                                        .background(Color(.systemBackground)) // Background for light/dark mode support
                                         .cornerRadius(15)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 15)
@@ -55,14 +63,19 @@ struct SearchView: View {
                                         .onTapGesture {
                                             viewModel.sendMessage(inputText: phrase.text, distance: viewModel.distance)
                                         }
+                                        .accessibilityAction(named: NSLocalizedString("select_search_phrase", comment: "Action to select the search phrase")) {
+                                            viewModel.sendMessage(inputText: phrase.text, distance: viewModel.distance)
+                                        }
                                     }
                                 }
                                 .padding(.horizontal)
                             }
                             .padding(.top, 24)
                         }
+
                         
                         ForEach(groupedMessages, id: \.key) { (day, messages) in
+                            // Display the day header
                             Text(day.currentTimeMillis().formatShortHeadDate)
                                 .font(.caption)
                                 .padding(4)
@@ -70,17 +83,22 @@ struct SearchView: View {
                                 .background(Color.teal.opacity(0.2))
                                 .cornerRadius(4)
                                 .frame(maxWidth: .infinity)
+                                .accessibilityLabel(String(format: NSLocalizedString("day_header_label", comment: "Header for day: %@"), day.currentTimeMillis().formatShortHeadDate))
+                            
+                            // Iterate through the messages for the day
                             ForEach(messages) { message in
                                 if message.isUser {
+                                    // User Message
                                     UserMessageView(message: message)
                                         .id(message.id)
                                 } else {
-                                    let productsAvailable = (message.products != nil && !(message.products?.isEmpty ?? true))
-                                    let optionalProductsAvailable = (message.optionalProducts != nil && !(message.optionalProducts?.isEmpty ?? true))
+                                    // Check for product availability
+                                    let hasProducts = message.products?.isEmpty == false
+                                    let hasOptionalProducts = message.optionalProducts?.isEmpty == false
                                     
-                                    if productsAvailable && optionalProductsAvailable, let secondMessage = message.secondMessage {
-                                        // Case 1: Both products and optionalProducts are not empty
-                                        // Display secondMessage with optionalProducts
+                                    // Conditional message display based on product availability
+                                    if hasProducts && hasOptionalProducts, let secondMessage = message.secondMessage {
+                                        // Case 1: Both products and optionalProducts are available
                                         ServerMessageView(
                                             message: secondMessage,
                                             products: message.optionalProducts!.map { ProductWrapper(product: $0.toProduct()) },
@@ -92,7 +110,6 @@ struct SearchView: View {
                                         .environmentObject(viewModel)
                                         .id("\(message.id)_second")
                                         
-                                        // Display firstMessage with products
                                         ServerMessageView(
                                             message: message.firstMessage,
                                             products: message.products!.map { ProductWrapper(product: $0.toProduct()) },
@@ -104,10 +121,8 @@ struct SearchView: View {
                                         .environmentObject(viewModel)
                                         .id("\(message.id)_first")
                                         
-                                        
-                                    } else if productsAvailable {
+                                    } else if hasProducts {
                                         // Case 2: Only products are available
-                                        // Display firstMessage with products
                                         ServerMessageView(
                                             message: message.firstMessage,
                                             products: message.products!.map { ProductWrapper(product: $0.toProduct()) },
@@ -118,9 +133,9 @@ struct SearchView: View {
                                         }
                                         .environmentObject(viewModel)
                                         .id("\(message.id)_first")
-                                    } else if optionalProductsAvailable, let secondMessage = message.secondMessage {
+                                        
+                                    } else if hasOptionalProducts, let secondMessage = message.secondMessage {
                                         // Case 3: Only optionalProducts are available
-                                        // Display secondMessage with optionalProducts
                                         ServerMessageView(
                                             message: secondMessage,
                                             products: message.optionalProducts!.map { ProductWrapper(product: $0.toProduct()) },
@@ -131,9 +146,9 @@ struct SearchView: View {
                                         }
                                         .environmentObject(viewModel)
                                         .id("\(message.id)_second")
+                                        
                                     } else {
-                                        // Case 4: Neither products nor optionalProducts are available
-                                        // Display firstMessage only (no products)
+                                        // Case 4: No products or optionalProducts
                                         ServerMessageView(
                                             message: message.firstMessage,
                                             products: [],
@@ -148,6 +163,7 @@ struct SearchView: View {
                                 }
                             }
                         }
+
                         .onAppear {
                             if let lastMessage = messages.last {
                                 withAnimation {
@@ -187,17 +203,12 @@ struct SearchView: View {
                 )
                 .padding(.leading, 16)
                 .padding(.trailing, !inputText.isEmpty ? 8 : 16)
-//                .onChange(of: inputText) { _, newValue in
-//                    withAnimation {
-//                        showButton = !newValue.isEmpty
-//                    }
-//                }
-                
-//                if showButton {
+                .accessibilityLabel(NSLocalizedString("text_input_accessibility", comment: "Input field for typing a message"))
+                .accessibilityHint(NSLocalizedString("text_input_hint", comment: "Enter a message to send"))
+
                     Button {
                         viewModel.sendMessage(inputText: inputText, distance: viewModel.distance)
                         inputText = ""
-//                        viewModel.startSendingMessages()
                     } label: {
                         Image(systemName: "arrow.up.circle.fill")
                             .resizable()
@@ -206,11 +217,12 @@ struct SearchView: View {
                             .padding(.trailing, 16)
                     }
                     .disabled(inputText.count < 5)
-//                    .transition(.scale.combined(with: .opacity))
-//                }
+                    .accessibilityLabel(NSLocalizedString("send_button_accessibility", comment: "Send button"))
+                    .accessibilityHint(NSLocalizedString("send_button_hint", comment: "Tap to send the entered message"))
             }
             .padding(.vertical, 16)
             .background(Color(.systemBackground))
+            .accessibilityElement(children: .combine)
         }
         .navigationBarTitle(
             String(
@@ -220,6 +232,7 @@ struct SearchView: View {
             displayMode: .inline
         )
         .toolbar {
+            // Show Map Button
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     self.showMap.toggle()
@@ -229,32 +242,48 @@ struct SearchView: View {
                         systemImage: "map.circle"
                     )
                 }
+                .accessibilityLabel(NSLocalizedString("show_map_accessibility", comment: "Button to show the map"))
             }
+
+            // Manage Messages
             ToolbarItem(placement: .topBarTrailing) {
                 if messages.count >= 10 {
-                   Button(role: .destructive) {
-                       viewModel.deleteChatGPTMessages()
-                   } label: {
-                       Label("Delete All Messages", systemImage: "trash")
-                   }
-               } else if !messages.isEmpty {
-                     Menu {
-                         Button(role: .destructive) {
-                             viewModel.deleteChatGPTMessages()
-                         } label: {
-                             Label("Delete All Messages", systemImage: "trash")
-                         }
-                     } label: {
-                         Image(systemName: "ellipsis")
-                             .padding()
-                     }
-                 }
+                    // Delete All Messages Button (Destructive)
+                    Button(role: .destructive) {
+                        viewModel.deleteChatGPTMessages()
+                    } label: {
+                        Label(
+                            NSLocalizedString("delete_all_messages", comment: "Label for delete all messages button"),
+                            systemImage: "trash"
+                        )
+                    }
+                    .accessibilityLabel(NSLocalizedString("delete_all_messages_accessibility", comment: "Delete all messages"))
+                } else if !messages.isEmpty {
+                    // Menu for managing messages
+                    Menu {
+                        Button(role: .destructive) {
+                            viewModel.deleteChatGPTMessages()
+                        } label: {
+                            Label(
+                                NSLocalizedString("delete_all_messages", comment: "Label for delete all messages button"),
+                                systemImage: "trash"
+                            )
+                        }
+                        .accessibilityLabel(NSLocalizedString("delete_all_messages_accessibility", comment: "Delete all messages"))
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .padding()
+                            .accessibilityLabel(NSLocalizedString("message_menu_accessibility", comment: "Menu for managing messages"))
+                    }
+                }
             }
         }
         .sheet(isPresented: $showMap) {
             LocationView()
                 .environmentObject(viewModel)
+                .accessibilityLabel(NSLocalizedString("map_view_accessibility", comment: "Map view"))
         }
+
     }
     
     init(popBackStack: @escaping (String?) -> Void) {

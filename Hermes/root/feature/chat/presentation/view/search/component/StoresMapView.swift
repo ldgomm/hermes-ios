@@ -13,14 +13,15 @@ struct StoresMapView: View {
     var body: some View {
         NavigationView {
             Map(position: $cameraPosition) {
-                // User location marker
-                Annotation("You are here", coordinate: userLocation) {
+                // User Location Marker
+                Annotation(NSLocalizedString("user_location_label", comment: "User's current location"), coordinate: userLocation) {
                     Circle()
                         .fill(Color.blue)
                         .frame(width: 10, height: 10)
+                        .accessibilityLabel(NSLocalizedString("user_location_marker", comment: "Marker indicating the user's current location"))
                 }
-                
-                // Store markers
+
+                // Store Markers
                 ForEach(stores) { store in
                     let storeCoordinate = CLLocationCoordinate2D(
                         latitude: store.address.location.coordinates[1],
@@ -33,6 +34,7 @@ struct StoresMapView: View {
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(.red)
                                 .shadow(radius: 5)
+                                .accessibilityLabel(String(format: NSLocalizedString("store_marker", comment: "Marker for store: %@"), store.name))
                         }
                         .onTapGesture {
                             selectedStore = store
@@ -48,12 +50,15 @@ struct StoresMapView: View {
                     Button(NSLocalizedString("close_button_label", comment: "Button label for closing the map view")) {
                         dismiss()
                     }
+                    .accessibilityLabel(NSLocalizedString("close_map_button", comment: "Close the map view"))
                 }
             }
             .sheet(item: $selectedStore) { store in
                 StoreView(store: store)
+                    .accessibilityLabel(String(format: NSLocalizedString("store_view_sheet", comment: "Details for store: %@"), store.name))
             }
         }
+
     }
     
     private func updateCameraPosition() {

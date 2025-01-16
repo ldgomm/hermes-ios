@@ -22,54 +22,80 @@ struct UserView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
+                // Map Section
                 Section {
-                    if UserDefaults.standard.object(forKey: "latitude") != nil,
-                       UserDefaults.standard.object(forKey: "longitude") != nil {
-                        let latitude = UserDefaults.standard.double(forKey: "latitude")
-                        let longitude = UserDefaults.standard.double(forKey: "longitude")
+                    if let latitude = UserDefaults.standard.object(forKey: "latitude") as? Double,
+                       let longitude = UserDefaults.standard.object(forKey: "longitude") as? Double {
                         let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-                        SimpleMapView(location: location)
+                        UserMapView(location: location)
+                            .accessibilityLabel(NSLocalizedString("map_accessibility_label", comment: "Map displaying the user's location"))
+                    } else {
+                        Text(NSLocalizedString("location_unavailable_message", comment: "Message displayed when location is unavailable"))
+                            .font(.body)
+                            .foregroundColor(.red)
+                            .multilineTextAlignment(.center)
+                            .accessibilityLabel(NSLocalizedString("location_unavailable_accessibility", comment: "Accessible message for unavailable location"))
                     }
                 }
                 .frame(height: 300)
                 .clipShape(RoundedRectangle(cornerRadius: 11))
                 .padding()
                 
+                // Privacy Message
                 Text(NSLocalizedString("privacy_message", comment: "Message informing the user that their privacy is respected and no information is stored"))
                     .font(.body)
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
                     .padding()
+                    .accessibilityLabel(NSLocalizedString("privacy_message_accessibility", comment: "Accessible message about privacy"))
+                
             }
             .padding()
             .navigationTitle(name)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                // Edit Button
                 ToolbarItem(placement: .topBarLeading) {
                     Button(NSLocalizedString("edit_button_label", comment: "Button label for editing user information")) {
                         self.updateUser.toggle()
                     }
+                    .accessibilityLabel(NSLocalizedString("edit_button_accessibility", comment: "Accessible label for the edit button"))
                 }
+                
+                // Settings Button
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Settings", systemImage: "gear") {
+                    Button {
                         self.showSettings.toggle()
+                    } label: {
+                        Label(NSLocalizedString("settings_button_label", comment: "Button label for accessing settings"), systemImage: "gear")
                     }
+                    .accessibilityLabel(NSLocalizedString("settings_button_accessibility", comment: "Accessible label for the settings button"))
                 }
             }
+            
             .sheet(isPresented: $updateUser) {
-                if UserDefaults.standard.object(forKey: "latitude") != nil,
-                   UserDefaults.standard.object(forKey: "longitude") != nil,
-                   UserDefaults.standard.object(forKey: "name") != nil {
-                    let name = UserDefaults.standard.string(forKey: "name")
-                    let latitude = UserDefaults.standard.double(forKey: "latitude")
-                    let longitude = UserDefaults.standard.double(forKey: "longitude")
+                // Check if user defaults contain necessary data
+                if let name = UserDefaults.standard.string(forKey: "name"),
+                   let latitude = UserDefaults.standard.object(forKey: "latitude") as? Double,
+                   let longitude = UserDefaults.standard.object(forKey: "longitude") as? Double {
                     let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                     
-                    EditUserView(name: name ?? "", location: location) {
+                    // Edit User View
+                    EditUserView(name: name, location: location) {
                         dismiss()
                     }
+                    .accessibilityLabel(NSLocalizedString("edit_user_view_accessibility", comment: "Accessible label for the edit user view"))
+                } else {
+                    // Fallback Message if UserDefaults Data is Missing
+                    Text(NSLocalizedString("missing_data_message", comment: "Message displayed when user data is missing"))
+                        .font(.body)
+                        .foregroundColor(.red)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .accessibilityLabel(NSLocalizedString("missing_data_accessibility", comment: "Accessible message for missing user data"))
                 }
             }
+            
             .sheet(isPresented: $showSettings) {
                 SettingsView()
                     .environmentObject(viewModel)

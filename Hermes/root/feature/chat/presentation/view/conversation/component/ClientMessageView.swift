@@ -9,12 +9,10 @@ import SwiftUI
 
 struct ClientMessageView: View {
     @EnvironmentObject var viewModel: ChatViewModel
-     
     var message: Message
     var product: Product?
     
     @State private var expanded: Bool = true
-    @State private var isShowingProduct: Bool = false
     
     var body: some View {
         VStack(alignment: .trailing, spacing: 0) {
@@ -22,46 +20,27 @@ struct ClientMessageView: View {
             case .text:
                 HStack {
                     Spacer(minLength: 60)
-                        VStack(alignment: .trailing, spacing: 2) {
-                            Text(message.text)
-                                .font(.body)
-                                .multilineTextAlignment(.leading)
-                                .padding(8)
-                                .background(Color.blue)
-                                .cornerRadius(12)
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity * 0.8, alignment: .trailing)
-                            
-                            HStack(alignment: .center, spacing: 2) {
-                                Text(message.date.formatDateTime)
-                                    .font(.caption2)
-                                    .foregroundColor(.secondary)
-//                                switch message.status {
-//                                case .sent:
-//                                    Image(systemName: "checkmark")
-//                                        .foregroundColor(.secondary)
-//                                        .font(.caption2)
-//                                case .delivered:
-//                                    HStack(spacing: 2) {
-//                                        Image(systemName: "checkmark")
-//                                            .foregroundColor(.secondary)
-//                                            .font(.caption)
-//                                        Image(systemName: "checkmark")
-//                                            .foregroundColor(.secondary)
-//                                            .font(.caption)
-//                                    }
-//                                case .read:
-//                                    HStack(spacing: 2) {
-//                                        Image(systemName: "checkmark")
-//                                            .foregroundColor(.secondary)
-//                                            .font(.caption)
-//                                        Image(systemName: "checkmark")
-//                                            .foregroundColor(.secondary)
-//                                            .font(.caption)
-//                                    }
-//                                }
-                            }
+                    
+                    VStack(alignment: .trailing, spacing: 2) {
+                        // Message text bubble
+                        Text(message.text)
+                            .font(.body)
+                            .multilineTextAlignment(.leading)
+                            .padding(8)
+                            .background(Color.blue)
+                            .cornerRadius(12)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity * 0.8, alignment: .trailing)
+                            .accessibilityLabel(message.text)
+                        
+                        // Message date
+                        HStack(alignment: .center, spacing: 2) {
+                            Text(message.date.formatDateTime)
+                                .font(.caption2)
+                                .foregroundColor(.secondary)
+                                .accessibilityLabel(String(format: NSLocalizedString("message_date_label", comment: "Message date"), message.date.formatDateTime))
                         }
+                    }
                     .frame(maxWidth: .infinity * 0.8, alignment: .trailing)
                 }
                 .onTapGesture {
@@ -71,22 +50,32 @@ struct ClientMessageView: View {
                         }
                     }
                 }
+                
             case .image:
                 Text("Image")
+                    .accessibilityLabel(NSLocalizedString("message_type_image", comment: "Image message"))
             case .video:
                 Text("Video")
+                    .accessibilityLabel(NSLocalizedString("message_type_video", comment: "Video message"))
             case .audio:
                 Text("Audio")
+                    .accessibilityLabel(NSLocalizedString("message_type_audio", comment: "Audio message"))
             case .file:
-                Text("FIle")
+                Text("File")
+                    .accessibilityLabel(NSLocalizedString("message_type_file", comment: "File message"))
             }
             
+            // Product view (if expanded and product exists)
             if expanded, let product {
                 Spacer()
-                NavigationLink(destination: ProductView(product: product, popBackStack: {_ in }).environmentObject(viewModel)) {
+                NavigationLink(
+                    destination: ProductView(product: product, popBackStack: { _ in })
+                        .environmentObject(viewModel)
+                ) {
                     ProductItemView(product: product)
                         .frame(maxWidth: .infinity * 0.8, alignment: .trailing)
                         .padding(.leading, 70)
+                        .accessibilityLabel(NSLocalizedString("product_details", comment: "View product details"))
                 }
             }
         }

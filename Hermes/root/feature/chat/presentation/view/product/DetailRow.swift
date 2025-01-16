@@ -13,11 +13,21 @@ struct DetailRow: View {
 
     var body: some View {
         HStack {
+            // Label text
             Text(label)
+                .font(.headline) // Use a headline font for emphasis
                 .fontWeight(.bold)
+                .accessibilityLabel(label) // Make the label accessible
+
             Spacer()
+
+            // Value text
             Text(value)
+                .font(.body) // Use a body font for normal text
+                .foregroundColor(.secondary) // Use a secondary color for differentiation
+                .accessibilityValue(value) // Make the value accessible
         }
+        .padding(.vertical, 8) // Add vertical padding for better spacing
+        .accessibilityElement(children: .combine) // Combine label and value for a single accessibility focus
     }
 }
-

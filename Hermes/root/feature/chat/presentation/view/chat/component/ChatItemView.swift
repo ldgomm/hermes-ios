@@ -15,31 +15,43 @@ struct ChatItemView: View {
     
     var body: some View {
         HStack {
+            // Store image or placeholder
             if let uiImage = uiImage {
                 Image(uiImage: uiImage)
                     .styledCircleImage()
+                    .accessibilityLabel(NSLocalizedString("store_image", comment: "Store image"))
             } else {
                 Image(systemName: "storefront")
                     .styledCircleImage()
+                    .accessibilityLabel(NSLocalizedString("placeholder_store_image", comment: "Placeholder for store image"))
                     .onAppear {
                         loadImageFromLocalOrRemote(urlString: store?.image.url)
                     }
             }
+
+            // Store details (name and message text)
             VStack(alignment: .leading) {
                 Text(store?.name ?? NSLocalizedString("no_store_name", comment: "Fallback text when there is no name for the store"))
                     .font(.headline)
+                    .accessibilityLabel(store?.name ?? NSLocalizedString("no_store_name", comment: "Fallback text when there is no name for the store"))
+
                 Text(message.text)
                     .font(.subheadline)
                     .foregroundColor(.gray)
                     .lineLimit(2)
+                    .accessibilityLabel(message.text)
             }
+
             Spacer()
+
+            // Message metadata (date and badge)
             VStack {
                 // Date text
                 Text(message.date.formatShortHeadDate)
                     .font(.subheadline)
                     .foregroundColor(.gray)
                     .padding(.trailing, 10)
+                    .accessibilityLabel(String(format: NSLocalizedString("message_date_label", comment: "Message date"), message.date.formatShortHeadDate))
 
                 // Message count badge
                 if sentOrDeliveredCount > 0 {
@@ -50,10 +62,12 @@ struct ChatItemView: View {
                         Text("\(sentOrDeliveredCount)")
                             .font(.footnote)
                             .foregroundColor(.white)
+                            .accessibilityLabel(String(format: NSLocalizedString("unread_messages_count", comment: "Unread messages count"), sentOrDeliveredCount))
                     }
                 }
             }
         }
+
     }
     
     init(store: Store? = nil, message: Message, sentOrDeliveredCount: Int) {
