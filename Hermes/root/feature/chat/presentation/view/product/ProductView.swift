@@ -348,8 +348,7 @@ struct ProductView: View {
                     },
                     secondaryButton: .cancel(Text(NSLocalizedString("cancel_label", comment: "Cancel button label")))
                 )
-            }
-
+            }   
         }
     }
     
@@ -385,5 +384,5 @@ struct ProductView: View {
         dismiss()
         popBackStack(storeId)
     }
-
+    
 }

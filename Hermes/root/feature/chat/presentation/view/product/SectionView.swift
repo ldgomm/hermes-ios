@@ -10,7 +10,7 @@ import SwiftUI
 struct SectionView<Content: View>: View {
     let title: String
     let content: () -> Content
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             // Section Title
@@ -18,7 +18,6 @@ struct SectionView<Content: View>: View {
                 .font(.headline)
                 .padding(.horizontal)
                 .accessibilityLabel(NSLocalizedString("section_title", comment: "Title of the section") + ": \(title)")
-
             // Section Content
             content()
                 .frame(maxWidth: .infinity)
