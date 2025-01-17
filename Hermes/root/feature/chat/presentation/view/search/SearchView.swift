@@ -32,7 +32,7 @@ struct SearchView: View {
                     VStack {
                         if messages.isEmpty {
                             Spacer()
-
+                            
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 20) {
                                     ForEach(searchPhrases) { phrase in
@@ -42,9 +42,9 @@ struct SearchView: View {
                                                 .font(.title2)
                                                 .foregroundColor(Color.blue)
                                                 .accessibilityLabel(NSLocalizedString("search_phrase_icon", comment: "Icon representing the search phrase"))
-
+                                            
                                             Spacer(minLength: 8)
-
+                                            
                                             // Phrase Text
                                             Text(phrase.text)
                                                 .font(.subheadline)
@@ -72,7 +72,7 @@ struct SearchView: View {
                             }
                             .padding(.top, 24)
                         }
-
+                        
                         
                         ForEach(groupedMessages, id: \.key) { (day, messages) in
                             // Display the day header
@@ -163,7 +163,7 @@ struct SearchView: View {
                                 }
                             }
                         }
-
+                        
                         .onAppear {
                             if let lastMessage = messages.last {
                                 withAnimation {
@@ -205,22 +205,22 @@ struct SearchView: View {
                 .padding(.trailing, !inputText.isEmpty ? 8 : 16)
                 .accessibilityLabel(NSLocalizedString("text_input_accessibility", comment: "Input field for typing a message"))
                 .accessibilityHint(NSLocalizedString("text_input_hint", comment: "Enter a message to send"))
-
-                    Button {
-                        viewModel.sendMessage(inputText: inputText, distance: viewModel.distance)
-                        inputText = ""
-                    } label: {
-                        Image(systemName: "arrow.up.circle.fill")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                            .foregroundColor(inputText.count < 5 ? .gray : .blue)
-                            .padding(.trailing, 16)
-                    }
-                    .disabled(inputText.count < 5)
-                    .accessibilityLabel(NSLocalizedString("send_button_accessibility", comment: "Send button"))
-                    .accessibilityHint(NSLocalizedString("send_button_hint", comment: "Tap to send the entered message"))
+                
+                Button {
+                    viewModel.sendMessage(inputText: inputText, distance: viewModel.distance)
+                    inputText = ""
+                } label: {
+                    Image(systemName: "arrow.up.circle.fill")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(inputText.count < 5 ? .gray : .blue)
+                        .padding(.trailing, 16)
+                }
+                .disabled(inputText.count < 4)
+                .accessibilityLabel(NSLocalizedString("send_button_accessibility", comment: "Send button"))
+                .accessibilityHint(NSLocalizedString("send_button_hint", comment: "Tap to send the entered message"))
             }
-            .padding(.vertical, 16)
+            .padding(.vertical, 8)
             .background(Color(.systemBackground))
             .accessibilityElement(children: .combine)
         }
@@ -244,7 +244,7 @@ struct SearchView: View {
                 }
                 .accessibilityLabel(NSLocalizedString("show_map_accessibility", comment: "Button to show the map"))
             }
-
+            
             // Manage Messages
             ToolbarItem(placement: .topBarTrailing) {
                 if messages.count >= 10 {
@@ -279,11 +279,11 @@ struct SearchView: View {
             }
         }
         .sheet(isPresented: $showMap) {
-            LocationView()
+            SearchLocationView()
                 .environmentObject(viewModel)
                 .accessibilityLabel(NSLocalizedString("map_view_accessibility", comment: "Map view"))
         }
-
+        
     }
     
     init(popBackStack: @escaping (String?) -> Void) {

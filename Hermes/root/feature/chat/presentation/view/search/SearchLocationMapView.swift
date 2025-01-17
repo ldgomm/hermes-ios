@@ -8,7 +8,7 @@
 import MapKit
 import SwiftUI
 
-struct DistanceMapView: UIViewRepresentable {
+struct SearchLocationMapView: UIViewRepresentable {
     @State private var location: CLLocationCoordinate2D?
     @Binding private var distance: Int
 
@@ -45,9 +45,9 @@ struct DistanceMapView: UIViewRepresentable {
     }
 
     class Coordinator: NSObject, MKMapViewDelegate {
-        var parent: DistanceMapView
+        var parent: SearchLocationMapView
 
-        init(_ parent: DistanceMapView) {
+        init(_ parent: SearchLocationMapView) {
             self.parent = parent
         }
 

@@ -8,7 +8,7 @@
 import MapKit
 import SwiftUI
 
-struct LocationView: View {
+struct SearchLocationView: View {
     @Environment(\.dismiss) var dismiss
     
     @EnvironmentObject var viewModel: ChatViewModel
@@ -34,7 +34,7 @@ struct LocationView: View {
                    let longitude = UserDefaults.standard.object(forKey: "longitude") as? Double {
                     let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                     
-                    DistanceMapView(location: location, distance: $viewModel.distance)
+                    SearchLocationMapView(location: location, distance: $viewModel.distance)
                         .frame(width: 400, height: 400)
                         .accessibilityLabel(NSLocalizedString("distance_map_accessibility", comment: "Map displaying the search distance"))
                 } else {

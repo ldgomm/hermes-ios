@@ -13,37 +13,48 @@ struct ProductItemView: View {
     @EnvironmentObject var viewModel: ChatViewModel
 
     var product: Product
-    @State private var uiImage: UIImage?
+//    @State private var uiImage: UIImage?
 
     var body: some View {
         let store = viewModel.stores.first(where: { $0.id == product.storeId })
 
         ZStack {
             // Show Christmas card view if offer is active
-            if product.price.offer.isActive {
-                ChrismasCardView()
-                    .accessibilityLabel(NSLocalizedString("special_offer_card", comment: "Christmas special offer card"))
-            }
+//            if product.price.offer.isActive {
+//                ChrismasCardView()
+//                    .accessibilityLabel(NSLocalizedString("special_offer_card", comment: "Christmas special offer card"))
+//            }
 
             HStack {
                 // Product Image
-                if let uiImage = uiImage {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 70, height: 70)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .accessibilityLabel(NSLocalizedString("product_image", comment: "Image of the product"))
-                } else {
-                    Image(systemName: "photo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 70, height: 70)
-                        .foregroundColor(.gray)
-                        .accessibilityLabel(NSLocalizedString("placeholder_image", comment: "Placeholder image for product"))
-                        .onAppear {
-                            loadImageFromLocalOrRemote(urlString: product.image.url)
+                if let imageUrl = URL(string: product.image.url) {
+                    CachedAsyncImage(url: imageUrl) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                                .frame(width: 70, height: 70)
+                                .accessibilityLabel(NSLocalizedString("loading_image", comment: "Loading image..."))
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 70, height: 70)
+                                .clipped()
+                                .cornerRadius(8)
+                                .accessibilityLabel(NSLocalizedString("image_loaded", comment: "Image successfully loaded"))
+                        case .failure:
+                            Image(systemName: "photo")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 70, height: 70)
+                                .clipped()
+                                .cornerRadius(8)
+                                .foregroundColor(.gray)
+                                .accessibilityLabel(NSLocalizedString("image_load_failed", comment: "Failed to load image"))
+                        @unknown default:
+                            EmptyView()
                         }
+                    }
                 }
 
                 // Product Details
@@ -137,36 +148,36 @@ struct ProductItemView: View {
         .background(RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.1)))
     }
 
-    private func loadImageFromLocalOrRemote(urlString: String?) {
-        guard let urlString = urlString else { return }
-        let fileManager = FileManager.default
-        let fileName = urlString.split(separator: "/").last.map(String.init) ?? "defaultImage"
-        let localURL = getDocumentsDirectory().appendingPathComponent(fileName)
-
-        if fileManager.fileExists(atPath: localURL.path) {
-            // Load from local storage
-            if let localImage = UIImage(contentsOfFile: localURL.path) {
-                self.uiImage = localImage
-            }
-        } else {
-            // Download from remote asynchronously and save locally
-            guard let url = URL(string: urlString) else { return }
-
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                guard let data = data, let downloadedImage = UIImage(data: data) else {
-                    return
-                }
-
-                // Save the image locally
-                self.saveImageLocally(uiImage: downloadedImage, fileName: fileName)
-
-                // Update the UI on the main thread
-                DispatchQueue.main.async {
-                    self.uiImage = downloadedImage
-                }
-            }.resume()
-        }
-    }
+//    private func loadImageFromLocalOrRemote(urlString: String?) {
+//        guard let urlString = urlString else { return }
+//        let fileManager = FileManager.default
+//        let fileName = urlString.split(separator: "/").last.map(String.init) ?? "defaultImage"
+//        let localURL = getDocumentsDirectory().appendingPathComponent(fileName)
+//
+//        if fileManager.fileExists(atPath: localURL.path) {
+//            // Load from local storage
+//            if let localImage = UIImage(contentsOfFile: localURL.path) {
+//                self.uiImage = localImage
+//            }
+//        } else {
+//            // Download from remote asynchronously and save locally
+//            guard let url = URL(string: urlString) else { return }
+//
+//            URLSession.shared.dataTask(with: url) { data, response, error in
+//                guard let data = data, let downloadedImage = UIImage(data: data) else {
+//                    return
+//                }
+//
+//                // Save the image locally
+//                self.saveImageLocally(uiImage: downloadedImage, fileName: fileName)
+//
+//                // Update the UI on the main thread
+//                DispatchQueue.main.async {
+//                    self.uiImage = downloadedImage
+//                }
+//            }.resume()
+//        }
+//    }
 
     private func saveImageLocally(uiImage: UIImage, fileName: String) {
         let localURL = getDocumentsDirectory().appendingPathComponent(fileName)
