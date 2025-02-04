@@ -18,7 +18,6 @@ struct EditUserView: View {
     @State private var oldLocation: CLLocationCoordinate2D? = nil
     @State private var showAlert: Bool = false
     
-    
     var body: some View {
         NavigationView {
             // Map Editing View

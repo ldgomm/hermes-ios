@@ -1,15 +1,15 @@
-/*
- Localizable.strings
- Hermes
- 
- Created by José Ruiz on 26/8/24.
- 
- */
+/* 
+  Localizable.strings
+  Hermes
+
+  Created by José Ruiz on 16/1/25.
+  
+*/
 
 "privacy_protection_message" = "We will always protect your privacy";
 "login_as_anonymous" = "Log in as anonymous";
-"cart_empty_message" = "There are no products in the cart";
-"cart_title" = "Cart";
+"cart_empty_message" = "There are no products in the basket";
+"cart_title" = "Basket";
 "stock_label" = "Stock";
 "chat_gpt_subtitle" = "I will answer queries about tech products and check stock availability";
 "chats_title" = "Chats";
@@ -29,7 +29,7 @@
 "no_label" = "No";
 "months_label" = "Months";
 "details_label" = "Details";
-"store_information_sheet_label" = "Store information .sheet";
+"store_information_sheet_label" = "Store information sheet";
 "request_product_label" = "Request product from";
 "ok_label" = "OK";
 "interest_message" = "Hello, I am interested in this product";
@@ -41,8 +41,8 @@
 "low_distance_limit_message" = "You have reached the lowest distance limit.";
 "high_distance_limit_message" = "You have reached the highest distance limit.";
 "be_yourself_placeholder" = "Be yourself...";
-"view_store_on_map" = "View store on map";
-"view_stores_on_map" = "View stores on map";
+"view_store_on_map" = "View shop on map";
+"view_stores_on_map" = "View shops on map";
 "you_are_here_label" = "You are here";
 "close_button_label" = "Close";
 "searching_within_distance" = "Searching within %d km";
@@ -55,7 +55,7 @@
 "privacy_message" = "We don’t have any of your information. We will always respect your privacy.";
 "edit_button_label" = "Edit";
 "today" = "today";
-"yesterday" = "yerterday";
+"yesterday" = "yesterday";
 "price_section_title" = "Price";
 "off_label" = "OFF";
 "legal_label" = "Legal";
@@ -64,9 +64,9 @@
 "chat_gpt_subtitle" = "Your AI-powered assistant";
 "profile_button" = "Profile";
 "profile_button_hint" = "Open user profile";
-"unknown_store" = "Unknown store";
-"store_image" = "Store image";
-"placeholder_store_image" = "Placeholder for store image";
+"unknown_store" = "Unknown shop";
+"store_image" = "Shop image";
+"placeholder_store_image" = "Placeholder for shop image";
 "unread_messages_count" = "%d unread messages";
 "chat_item_image" = "Chat item icon";
 "chat_item_title" = "Chat title";
@@ -98,11 +98,11 @@
 "loading_product_image" = "Loading product image...";
 "product_image_loaded" = "Product image loaded successfully";
 "product_image_failed" = "Failed to load product image";
-"loading_store_image" = "Loading store image...";
-"store_image" = "Store image";
-"store_image_expanded" = "Expanded store image";
-"store_image_failed" = "Failed to load store image";
-"store_name_label" = "Store name";
+"loading_store_image" = "Loading shop image...";
+"store_image" = "Shop image";
+"store_image_expanded" = "Expanded shop image";
+"store_image_failed" = "Failed to load shop image";
+"store_name_label" = "Shop name";
 "product_category_label" = "Product category";
 "price_label" = "Price";
 "original_price_label" = "Original price";
@@ -127,7 +127,7 @@
 "keywords_label" = "Keywords";
 "keywords_text" = "Keywords: %@";
 "specifications_label" = "Specifications";
-"colours_label" = "Colors";
+"colours_label" = "Colours";
 "finished_label" = "Finished";
 "in_box_label" = "In the Box";
 "size_label" = "Size";
@@ -139,13 +139,13 @@
 "legal_information_label" = "Legal Information";
 "warning_label" = "Warnings";
 "warning_information_label" = "Warning Information";
-"store_information_sheet_label" = "Store Information";
-"store_information_label" = "Store Information: %@";
+"store_information_sheet_label" = "Shop Information";
+"store_information_label" = "Shop Information: %@";
 "request_product_label" = "Request Product from";
 "request_product_button_label" = "Request product from %@";
-"no_store_name" = "No store name available";
-"add_to_cart_label" = "Add to cart";
-"add_to_cart_hint" = "Adds %@ to your cart";
+"no_store_name" = "No shop name available";
+"add_to_cart_label" = "Add to basket";
+"add_to_cart_hint" = "Adds %@ to your basket";
 "message_sent_title" = "Message Sent";
 "message_sent_body" = "Your message has been sent successfully.";
 "ok_label" = "OK";
@@ -158,9 +158,9 @@
 "placeholder_image" = "Placeholder image for product";
 "product_name" = "Product name: %@";
 "product_label" = "Product label: %@";
-"store_name" = "Store name: %@";
-"no_store_name" = "No store name available";
-"distance_to_store" = "Distance to store: %.2f kilometers";
+"store_name" = "Shop name: %@";
+"no_store_name" = "No shop name available";
+"distance_to_store" = "Distance to shop: %.2f kilometres";
 "discount_offer" = "Discount offer: %d%% off";
 "discounted_price" = "Discounted price: %@";
 "original_price" = "Original price: %@";
@@ -168,24 +168,24 @@
 "message_text" = "Message: %@";
 "message_date" = "Message date: %@";
 "product_item" = "Product item: %@";
-"view_store_on_map" = "View store on map";
-"view_stores_on_map" = "View stores on map";
-"view_single_store_on_map" = "Tap to view the store on the map";
-"view_multiple_stores_on_map" = "Tap to view the stores on the map";
-"stores_map_sheet" = "Sheet displaying stores on map";
+"view_store_on_map" = "View shop on map";
+"view_stores_on_map" = "View shops on map";
+"view_single_store_on_map" = "Tap to view the shop on the map";
+"view_multiple_stores_on_map" = "Tap to view the shops on the map";
+"stores_map_sheet" = "Sheet displaying shops on map";
 "location_unavailable" = "Location is not available";
-"location_error_message" = "Location is unavailable for displaying stores on map";
+"location_error_message" = "Location is unavailable for displaying shops on map";
 "product_view_sheet" = "Sheet displaying product details";
 "user_location_label" = "User's current location";
 "user_location_marker" = "Current location";
-"store_marker" = "Marker for store: %@";
+"store_marker" = "Marker for shop: %@";
 "close_button_label" = "Close";
 "close_map_button" = "Close the map view";
-"store_view_sheet" = "Details for store: %@";
+"store_view_sheet" = "Details for shop: %@";
 "user_message_text" = "User message: %@";
 "user_message_date" = "Message date: %@";
 "search_radius_message" = "Your search radius is %d km.";
-"search_radius_accessibility" = "Search radius: %d kilometers.";
+"search_radius_accessibility" = "Search radius: %d kilometres.";
 "distance_label" = "Distance:";
 "distance_stepper_accessibility" = "Stepper to adjust the search distance.";
 "reset_distance_button" = "Reset search distance.";
@@ -223,9 +223,6 @@
 "current_location_marker" = "Marker for the user's current location";
 "interactive_map_accessibility" = "Interactive map for selecting a location";
 "invalid_map_tap" = "Unable to determine the selected location on the map";
-"you_are_here_label" = "You are here";
-"current_location_marker" = "Marker for the user's current location";
-"map_view_accessibility" = "Interactive map displaying user's current location";
 "map_accessibility_label" = "Map displaying the user's location";
 "location_unavailable_message" = "Location data is unavailable.";
 "location_unavailable_accessibility" = "Accessible message for unavailable location";

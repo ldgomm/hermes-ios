@@ -64,6 +64,21 @@
 			path = es.lproj;
 			sourceTree = "<group>";
 		};
+		ACD60C8B2D3A03B400545C1E /* fr.lproj */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = fr.lproj;
+			sourceTree = "<group>";
+		};
+		ACD60C8F2D3A07B600545C1E /* en-GB.lproj */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "en-GB.lproj";
+			sourceTree = "<group>";
+		};
+		ACD60C9C2D3A10F000545C1E /* de.lproj */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = de.lproj;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +115,11 @@
 		AC1412622CD55A4B00C93C3E = {
 			isa = PBXGroup;
 			children = (
-				AC1413E62CD55BC100C93C3E /* es.lproj */,
+				ACD60C9C2D3A10F000545C1E /* de.lproj */,
+				ACD60C8F2D3A07B600545C1E /* en-GB.lproj */,
 				AC1413E22CD55B6300C93C3E /* en.lproj */,
+				AC1413E62CD55BC100C93C3E /* es.lproj */,
+				ACD60C8B2D3A03B400545C1E /* fr.lproj */,
 				AC14126D2CD55A4B00C93C3E /* Hermes */,
 				AC14127E2CD55A4C00C93C3E /* HermesTests */,
 				AC1412882CD55A4C00C93C3E /* HermesUITests */,
@@ -138,6 +156,9 @@
 				AC14126D2CD55A4B00C93C3E /* Hermes */,
 				AC1413E22CD55B6300C93C3E /* en.lproj */,
 				AC1413E62CD55BC100C93C3E /* es.lproj */,
+				ACD60C8B2D3A03B400545C1E /* fr.lproj */,
+				ACD60C8F2D3A07B600545C1E /* en-GB.lproj */,
+				ACD60C9C2D3A10F000545C1E /* de.lproj */,
 			);
 			name = Hermes;
 			packageProductDependencies = (
@@ -228,6 +249,9 @@
 				en,
 				Base,
 				es,
+				fr,
+				"en-GB",
+				de,
 			);
 			mainGroup = AC1412622CD55A4B00C93C3E;
 			minimizedProjectReferenceProxies = 1;

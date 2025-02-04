@@ -39,6 +39,7 @@ struct ChatItemView: View {
                     .font(.subheadline)
                     .foregroundColor(.gray)
                     .lineLimit(2)
+                    .padding(.top, 2)
                     .accessibilityLabel(message.text)
             }
 
