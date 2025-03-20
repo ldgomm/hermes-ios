@@ -27,7 +27,6 @@ struct DetailRow: View {
                 .foregroundColor(.secondary) // Use a secondary color for differentiation
                 .accessibilityValue(value) // Make the value accessible
         }
-        .padding(.vertical, 8) // Add vertical padding for better spacing
         .accessibilityElement(children: .combine) // Combine label and value for a single accessibility focus
     }
 }

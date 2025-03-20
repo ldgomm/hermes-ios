@@ -12,13 +12,12 @@ import SwiftUI
 struct ProductItemView: View {
     @EnvironmentObject var viewModel: ChatViewModel
 
-    var product: Product
-//    @State private var uiImage: UIImage?
+    var product: ProductItem
 
     var body: some View {
         let store = viewModel.stores.first(where: { $0.id == product.storeId })
 
-        ZStack {
+//        ZStack {
             // Show Christmas card view if offer is active
 //            if product.price.offer.isActive {
 //                ChrismasCardView()
@@ -27,7 +26,7 @@ struct ProductItemView: View {
 
             HStack {
                 // Product Image
-                if let imageUrl = URL(string: product.image.url) {
+                if let imageUrl = URL(string: product.imageUrl) {
                     CachedAsyncImage(url: imageUrl) { phase in
                         switch phase {
                         case .empty:
@@ -102,22 +101,22 @@ struct ProductItemView: View {
 
                 // Pricing Section
                 VStack(alignment: .trailing) {
-                    if product.price.offer.isActive {
+                    if product.offer.isActive {
                         // Discount Badge
-                        Text("\(Int(product.price.offer.discount))% OFF")
+                        Text("\(Int(product.offer.discount))% OFF")
                             .font(.caption)
                             .padding(5)
                             .background(Color.red)
                             .foregroundColor(.white)
                             .cornerRadius(5)
                             .padding(.trailing, 5)
-                            .accessibilityLabel(String(format: NSLocalizedString("discount_offer", comment: "Discount offer: %d%% off"), Int(product.price.offer.discount)))
+                            .accessibilityLabel(String(format: NSLocalizedString("discount_offer", comment: "Discount offer: %d%% off"), Int(product.offer.discount)))
 
                         // Discounted Price
-                        let discount = Double(product.price.offer.discount) / 100.0
-                        let discountedPrice = product.price.amount * (1.0 - discount)
+                        let discount = Double(product.offer.discount) / 100.0
+                        let discountedPrice = product.amount * (1.0 - discount)
 
-                        Text("\(discountedPrice, format: .currency(code: product.price.currency))")
+                        Text("\(discountedPrice, format: .currency(code: product.currency))")
                             .font(.subheadline)
                             .foregroundColor(.primary)
                             .accessibilityLabel(
@@ -128,67 +127,24 @@ struct ProductItemView: View {
                             )
 
                         // Original Price
-                        Text("\(product.price.amount, format: .currency(code: product.price.currency))")
+                        Text("\(product.amount, format: .currency(code: product.currency))")
                             .font(.caption)
                             .strikethrough()
                             .foregroundColor(.secondary)
-                            .accessibilityLabel(String(format: NSLocalizedString("original_price", comment: "Original price: %@"), String(format: "%.2f", product.price.amount)))
+                            .accessibilityLabel(String(format: NSLocalizedString("original_price", comment: "Original price: %@"), String(format: "%.2f", product.amount)))
                     } else {
                         // Regular Price
-                        Text(product.price.amount, format: .currency(code: product.price.currency))
+                        Text(product.amount, format: .currency(code: product.currency))
                             .font(.subheadline)
                             .foregroundColor(.primary)
-                            .accessibilityLabel(String(format: NSLocalizedString("regular_price", comment: "Price: %@"), product.price.amount))
+                            .accessibilityLabel(String(format: NSLocalizedString("regular_price", comment: "Price: %@"), product.amount))
                     }
                 }
             }
-        }
+//        }
 
         .padding()
         .background(RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.1)))
-    }
-
-//    private func loadImageFromLocalOrRemote(urlString: String?) {
-//        guard let urlString = urlString else { return }
-//        let fileManager = FileManager.default
-//        let fileName = urlString.split(separator: "/").last.map(String.init) ?? "defaultImage"
-//        let localURL = getDocumentsDirectory().appendingPathComponent(fileName)
-//
-//        if fileManager.fileExists(atPath: localURL.path) {
-//            // Load from local storage
-//            if let localImage = UIImage(contentsOfFile: localURL.path) {
-//                self.uiImage = localImage
-//            }
-//        } else {
-//            // Download from remote asynchronously and save locally
-//            guard let url = URL(string: urlString) else { return }
-//
-//            URLSession.shared.dataTask(with: url) { data, response, error in
-//                guard let data = data, let downloadedImage = UIImage(data: data) else {
-//                    return
-//                }
-//
-//                // Save the image locally
-//                self.saveImageLocally(uiImage: downloadedImage, fileName: fileName)
-//
-//                // Update the UI on the main thread
-//                DispatchQueue.main.async {
-//                    self.uiImage = downloadedImage
-//                }
-//            }.resume()
-//        }
-//    }
-
-    private func saveImageLocally(uiImage: UIImage, fileName: String) {
-        let localURL = getDocumentsDirectory().appendingPathComponent(fileName)
-        if let data = uiImage.jpegData(compressionQuality: 0.8) {
-            try? data.write(to: localURL)
-        }
-    }
-
-    private func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
     }
 }
 

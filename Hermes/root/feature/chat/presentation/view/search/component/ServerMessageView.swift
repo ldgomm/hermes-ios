@@ -58,17 +58,16 @@ struct ServerMessageView: View {
             // Products Section
             if expanded, let products {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 16) {
+                    LazyHStack {
                         ForEach(products) { wrapper in
-                            ProductItemView(product: wrapper.product)
+                            ProductItemView(product: wrapper.product.toProductItem())
                                 .frame(width: UIScreen.main.bounds.width * 0.8)
-                                .padding(.vertical, 4)
                                 .onTapGesture {
                                     selectedProduct = wrapper.product
                                 }
                                 .accessibilityLabel(String(format: NSLocalizedString("product_item", comment: "Product item: %@"), wrapper.product.name))
                         }
-                        Spacer(minLength: 70)
+//                        Spacer(minLength: 70)
                     }
                     .accessibilityElement(children: .combine) // Combine products for accessibility
                 }
@@ -92,6 +91,7 @@ struct ServerMessageView: View {
                         .onTapGesture {
                             showStores.toggle()
                         }
+                        .padding(.top, 6)
                 }
             }
         }

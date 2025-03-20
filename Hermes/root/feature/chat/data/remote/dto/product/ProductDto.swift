@@ -23,13 +23,14 @@ struct ProductDto: Codable, Identifiable {
     var date: Int64
     var overview: [InformationDto]
     var keywords: [String]? = nil
+    var codes: CodesDto? = nil
     var specifications: SpecificationsDto?
-    var warranty: WarrantyDto?
+    var warranty: String?
     var legal: String?
     var warning: String?
     var storeId: String? = nil
     
-    init(id: String, name: String, label: String? = nil, owner: String? = nil, year: String? = nil, model: String, description: String, category: CategoryDto, price: PriceDto, stock: Int, image: ImageDto, origin: String, date: Int64, overview: [InformationDto], keywords: [String]? = nil, specifications: SpecificationsDto? = nil, warranty: WarrantyDto? = nil, legal: String? = nil, warning: String? = nil, storeId: String? = nil) {
+    init(id: String, name: String, label: String? = nil, owner: String? = nil, year: String? = nil, model: String, description: String, category: CategoryDto, price: PriceDto, stock: Int, image: ImageDto, origin: String, date: Int64, overview: [InformationDto], keywords: [String]? = nil, codes: CodesDto? = nil, specifications: SpecificationsDto? = nil, warranty: String? = nil, legal: String? = nil, warning: String? = nil, storeId: String? = nil) {
         self.id = id
         self.name = name
         self.label = label
@@ -45,6 +46,7 @@ struct ProductDto: Codable, Identifiable {
         self.date = date
         self.overview = overview
         self.keywords = keywords
+        self.codes = codes
         self.specifications = specifications
         self.warranty = warranty
         self.legal = legal
@@ -68,8 +70,9 @@ struct ProductDto: Codable, Identifiable {
         self.date = try container.decode(Int64.self, forKey: .date)
         self.overview = try container.decode([InformationDto].self, forKey: .overview)
         self.keywords = try container.decodeIfPresent([String].self, forKey: .keywords)
+        self.codes = try container.decodeIfPresent(CodesDto.self, forKey: .codes)
         self.specifications = try container.decodeIfPresent(SpecificationsDto.self, forKey: .specifications)
-        self.warranty = try container.decodeIfPresent(WarrantyDto.self, forKey: .warranty)
+        self.warranty = try container.decodeIfPresent(String.self, forKey: .warranty)
         self.legal = try container.decodeIfPresent(String.self, forKey: .legal)
         self.warning = try container.decodeIfPresent(String.self, forKey: .warning)
         self.storeId = try container.decodeIfPresent(String.self, forKey: .storeId)
@@ -91,6 +94,7 @@ struct ProductDto: Codable, Identifiable {
         case date
         case overview
         case keywords
+        case codes
         case specifications
         case warranty
         case legal
@@ -115,6 +119,7 @@ struct ProductDto: Codable, Identifiable {
         try container.encode(self.date, forKey: .date)
         try container.encode(self.overview, forKey: .overview)
         try container.encodeIfPresent(self.keywords, forKey: .keywords)
+        try container.encodeIfPresent(self.codes, forKey: .codes)
         try container.encodeIfPresent(self.specifications, forKey: .specifications)
         try container.encodeIfPresent(self.warranty, forKey: .warranty)
         try container.encodeIfPresent(self.legal, forKey: .legal)
@@ -123,7 +128,7 @@ struct ProductDto: Codable, Identifiable {
     }
     
     func toProduct() -> Product {
-        return Product(id: id, name: name, label: label, owner: owner, year: year, model: model, description: description, category: category.toCategory(), price: price.toPrice(), stock: stock, image: image.toImagex(), origin: origin, date: date, overview: overview.map { $0.toInformation() }, keywords: keywords,  specifications: specifications?.toSpecifications(), warranty: warranty?.toWarranty(), legal: legal, warning: warning, storeId: storeId)
+        return Product(id: id, name: name, label: label, owner: owner, year: year, model: model, description: description, category: category.toCategory(), price: price.toPrice(), stock: stock, image: image.toImagex(), origin: origin, date: date, overview: overview.map { $0.toInformation() }, keywords: keywords, codes: codes?.toCodes(), specifications: specifications?.toSpecifications(), warranty: warranty, legal: legal, warning: warning, storeId: storeId)
     }
 }
 
@@ -144,12 +149,12 @@ struct LocalProductDto: Codable, Identifiable {
     var overview: [InformationDto]
     var keywords: [String]? = nil
     var specifications: SpecificationsDto?
-    var warranty: WarrantyDto?
+    var warranty: String?
     var legal: String?
     var warning: String?
     var storeId: String? = nil
     
-    init(id: String, name: String, label: String? = nil, owner: String? = nil, year: String? = nil, model: String, body: String, category: CategoryDto, price: PriceDto, stock: Int, image: ImageDto, origin: String, date: Int64, overview: [InformationDto], keywords: [String]? = nil, specifications: SpecificationsDto? = nil, warranty: WarrantyDto? = nil, legal: String? = nil, warning: String? = nil, storeId: String? = nil) {
+    init(id: String, name: String, label: String? = nil, owner: String? = nil, year: String? = nil, model: String, body: String, category: CategoryDto, price: PriceDto, stock: Int, image: ImageDto, origin: String, date: Int64, overview: [InformationDto], keywords: [String]? = nil, specifications: SpecificationsDto? = nil, warranty: String? = nil, legal: String? = nil, warning: String? = nil, storeId: String? = nil) {
         self.id = id
         self.name = name
         self.label = label
@@ -173,6 +178,6 @@ struct LocalProductDto: Codable, Identifiable {
     }
 
     func toProduct() -> Product {
-        return Product(id: id, name: name, label: label, owner: owner, year: year, model: model, description: body, category: category.toCategory(), price: price.toPrice(), stock: stock, image: image.toImagex(), origin: origin, date: date, overview: overview.map { $0.toInformation() }, keywords: keywords, specifications: specifications?.toSpecifications(), warranty: warranty?.toWarranty(), legal: legal, warning: warning, storeId: storeId)
+        return Product(id: id, name: name, label: label, owner: owner, year: year, model: model, description: body, category: category.toCategory(), price: price.toPrice(), stock: stock, image: image.toImagex(), origin: origin, date: date, overview: overview.map { $0.toInformation() }, keywords: keywords, codes: nil, specifications: specifications?.toSpecifications(), warranty: warranty, legal: legal, warning: warning, storeId: storeId)
     }
 }

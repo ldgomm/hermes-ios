@@ -48,9 +48,7 @@ extension Int64 {
         }
     }
     
-    var formatDateTime: String {
-        let currentTime = Date().timeIntervalSince1970 * 1000
-                
+    var formatDateTime: String {                
         let date = Date(timeIntervalSince1970: TimeInterval(self) / 1000)
         let dateFormatter = DateFormatter()
         

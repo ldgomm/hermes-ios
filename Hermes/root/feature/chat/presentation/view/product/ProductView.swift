@@ -270,14 +270,12 @@ struct ProductView: View {
                             }
                         }
                         
+                        
                         // Warranty Section
                         if let warranty = product.warranty {
                             SectionView(title: NSLocalizedString("warranty_label", comment: "Section title for warranty information")) {
-                                DetailRow(
-                                    label: String(format: NSLocalizedString("for_months_label", comment: "Label for warranty period"), warranty.months),
-                                    value: warranty.details.joined(separator: ", ")
-                                )
-                                .accessibilityLabel(String(format: NSLocalizedString("warranty_details_label", comment: "Warranty details with months"), warranty.months, warranty.details.joined(separator: ", ")))
+                                Text(warranty)
+                                    .accessibilityLabel(NSLocalizedString("legal_information_label", comment: "Warranty details with months") + ": \(warranty)")
                             }
                         }
                         
@@ -299,6 +297,7 @@ struct ProductView: View {
                         
                         // Store Information Label
                         Text("\(NSLocalizedString("store_information_sheet_label", comment: "Label for store information")): \(store?.name ?? NSLocalizedString("no_store_name", comment: "Fallback for missing store name"))")
+                            .padding(.horizontal, 10)
                             .accessibilityLabel(String(format: NSLocalizedString("store_information_label", comment: "Store information with name"), store?.name ?? NSLocalizedString("no_store_name", comment: "Fallback for missing store name")))
                         
                         // Request Product Button

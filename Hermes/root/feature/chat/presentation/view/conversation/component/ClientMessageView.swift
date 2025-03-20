@@ -72,7 +72,7 @@ struct ClientMessageView: View {
                     destination: ProductView(product: product, popBackStack: { _ in })
                         .environmentObject(viewModel)
                 ) {
-                    ProductItemView(product: product)
+                    ProductItemView(product: product.toProductItem())
                         .frame(maxWidth: .infinity * 0.8, alignment: .trailing)
                         .padding(.leading, 70)
                         .accessibilityLabel(NSLocalizedString("product_details", comment: "View product details"))

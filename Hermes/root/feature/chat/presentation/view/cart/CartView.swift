@@ -23,7 +23,7 @@ struct CartView: View {
                                 ProductView(product: product, popBackStack: {_ in })
                                     .environmentObject(viewModel)
                             } label: {
-                                ProductItemView(product: product)
+                                ProductItemView(product: product.toProductItem())
                             }
 
                         }
