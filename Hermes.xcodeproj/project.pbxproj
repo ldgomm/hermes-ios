@@ -33,7 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AC14126B2CD55A4B00C93C3E /* Hermes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hermes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC14126B2CD55A4B00C93C3E /* Hermes Ec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hermes Ec.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC14127B2CD55A4C00C93C3E /* HermesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HermesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC1412852CD55A4C00C93C3E /* HermesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HermesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -62,21 +62,6 @@
 		AC1413E62CD55BC100C93C3E /* es.lproj */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = es.lproj;
-			sourceTree = "<group>";
-		};
-		ACD60C8B2D3A03B400545C1E /* fr.lproj */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = fr.lproj;
-			sourceTree = "<group>";
-		};
-		ACD60C8F2D3A07B600545C1E /* en-GB.lproj */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "en-GB.lproj";
-			sourceTree = "<group>";
-		};
-		ACD60C9C2D3A10F000545C1E /* de.lproj */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = de.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -115,11 +100,8 @@
 		AC1412622CD55A4B00C93C3E = {
 			isa = PBXGroup;
 			children = (
-				ACD60C9C2D3A10F000545C1E /* de.lproj */,
-				ACD60C8F2D3A07B600545C1E /* en-GB.lproj */,
 				AC1413E22CD55B6300C93C3E /* en.lproj */,
 				AC1413E62CD55BC100C93C3E /* es.lproj */,
-				ACD60C8B2D3A03B400545C1E /* fr.lproj */,
 				AC14126D2CD55A4B00C93C3E /* Hermes */,
 				AC14127E2CD55A4C00C93C3E /* HermesTests */,
 				AC1412882CD55A4C00C93C3E /* HermesUITests */,
@@ -130,7 +112,7 @@
 		AC14126C2CD55A4B00C93C3E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AC14126B2CD55A4B00C93C3E /* Hermes.app */,
+				AC14126B2CD55A4B00C93C3E /* Hermes Ec.app */,
 				AC14127B2CD55A4C00C93C3E /* HermesTests.xctest */,
 				AC1412852CD55A4C00C93C3E /* HermesUITests.xctest */,
 			);
@@ -140,9 +122,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AC14126A2CD55A4B00C93C3E /* Hermes */ = {
+		AC14126A2CD55A4B00C93C3E /* Hermes Ec */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AC14128F2CD55A4C00C93C3E /* Build configuration list for PBXNativeTarget "Hermes" */;
+			buildConfigurationList = AC14128F2CD55A4C00C93C3E /* Build configuration list for PBXNativeTarget "Hermes Ec" */;
 			buildPhases = (
 				AC1412672CD55A4B00C93C3E /* Sources */,
 				AC1412682CD55A4B00C93C3E /* Frameworks */,
@@ -156,11 +138,8 @@
 				AC14126D2CD55A4B00C93C3E /* Hermes */,
 				AC1413E22CD55B6300C93C3E /* en.lproj */,
 				AC1413E62CD55BC100C93C3E /* es.lproj */,
-				ACD60C8B2D3A03B400545C1E /* fr.lproj */,
-				ACD60C8F2D3A07B600545C1E /* en-GB.lproj */,
-				ACD60C9C2D3A10F000545C1E /* de.lproj */,
 			);
-			name = Hermes;
+			name = "Hermes Ec";
 			packageProductDependencies = (
 				AC78DBD12CDD16CB00DEDFBA /* FirebaseAuth */,
 				AC78DBD32CDD16CB00DEDFBA /* FirebaseAuthCombine-Community */,
@@ -170,7 +149,7 @@
 				AC78DBDB2CDD16CB00DEDFBA /* FirebaseStorageCombine-Community */,
 			);
 			productName = Hermes;
-			productReference = AC14126B2CD55A4B00C93C3E /* Hermes.app */;
+			productReference = AC14126B2CD55A4B00C93C3E /* Hermes Ec.app */;
 			productType = "com.apple.product-type.application";
 		};
 		AC14127A2CD55A4C00C93C3E /* HermesTests */ = {
@@ -227,7 +206,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					AC14126A2CD55A4B00C93C3E = {
 						CreatedOnToolsVersion = 16.0;
@@ -243,7 +222,7 @@
 				};
 			};
 			buildConfigurationList = AC1412662CD55A4B00C93C3E /* Build configuration list for PBXProject "Hermes" */;
-			developmentRegion = en;
+			developmentRegion = es;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -263,7 +242,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AC14126A2CD55A4B00C93C3E /* Hermes */,
+				AC14126A2CD55A4B00C93C3E /* Hermes Ec */,
 				AC14127A2CD55A4C00C93C3E /* HermesTests */,
 				AC1412842CD55A4C00C93C3E /* HermesUITests */,
 			);
@@ -321,12 +300,12 @@
 /* Begin PBXTargetDependency section */
 		AC14127D2CD55A4C00C93C3E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AC14126A2CD55A4B00C93C3E /* Hermes */;
+			target = AC14126A2CD55A4B00C93C3E /* Hermes Ec */;
 			targetProxy = AC14127C2CD55A4C00C93C3E /* PBXContainerItemProxy */;
 		};
 		AC1412872CD55A4C00C93C3E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AC14126A2CD55A4B00C93C3E /* Hermes */;
+			target = AC14126A2CD55A4B00C93C3E /* Hermes Ec */;
 			targetProxy = AC1412862CD55A4C00C93C3E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -337,6 +316,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -400,6 +380,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -458,11 +439,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Hermes/Hermes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Hermes/Preview Content\"";
 				DEVELOPMENT_TEAM = 5KDK28ZYPD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Hermes Ec";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -475,9 +458,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.premierdarkcoffee.sales.Hermes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -488,11 +475,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Hermes/Hermes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Hermes/Preview Content\"";
 				DEVELOPMENT_TEAM = 5KDK28ZYPD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Hermes Ec";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -505,9 +494,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.premierdarkcoffee.sales.Hermes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -595,7 +588,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AC14128F2CD55A4C00C93C3E /* Build configuration list for PBXNativeTarget "Hermes" */ = {
+		AC14128F2CD55A4C00C93C3E /* Build configuration list for PBXNativeTarget "Hermes Ec" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AC1412902CD55A4C00C93C3E /* Debug */,

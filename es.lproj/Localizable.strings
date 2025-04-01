@@ -6,7 +6,6 @@
   
 */
 
-//Autenticación
 "privacy_protection_message" = "Siempre protegeremos tu privacidad";
 "login_as_anonymous" = "Iniciar sesión como anónimo";
 "cart_empty_message" = "No hay productos en el carrito";
@@ -60,8 +59,7 @@
 "price_section_title" = "Precio";
 "off_label" = "OFF";
 "legal_label" = "Legal";
-"chats_title" = "Chats";
-"chat_gpt_title" = "ChatGPT";
+"chat_gpt_title" = "Asistente inteligente";
 "chat_gpt_subtitle" = "Tu asistente impulsado por IA";
 "profile_button" = "Perfil";
 "profile_button_hint" = "Abrir perfil de usuario";
@@ -100,7 +98,6 @@
 "product_image_loaded" = "Imagen del producto cargada con éxito";
 "product_image_failed" = "Error al cargar la imagen del producto";
 "loading_store_image" = "Cargando imagen de la tienda...";
-"store_image" = "Imagen de la tienda";
 "store_image_expanded" = "Imagen de la tienda ampliada";
 "store_image_failed" = "Error al cargar la imagen de la tienda";
 "store_name_label" = "Nombre de la tienda";
@@ -230,7 +227,6 @@
 "map_accessibility_label" = "Mapa que muestra la ubicación del usuario";
 "location_unavailable_message" = "Los datos de ubicación no están disponibles.";
 "location_unavailable_accessibility" = "Mensaje accesible para ubicación no disponible";
-"privacy_message" = "Tu privacidad es respetada y no se almacena información.";
 "privacy_message_accessibility" = "Mensaje accesible sobre privacidad";
 "edit_button_label" = "Editar";
 "edit_button_accessibility" = "Editar información del usuario";
@@ -251,3 +247,13 @@
 "section_content_accessibility" = "Contenido de la sección";
 "privacy_policy_title" = "Política de Privacidad";
 "privacy_policy_description" = "Valoramos tu privacidad y aseguramos la protección de tus datos.";
+
+"settings_title" = "Configuración";
+"account_deletion" = "Eliminar cuenta";
+"delete_confirmation_title" = "¿Estás seguro?";
+"delete_confirmation_message" = "Eliminar tu cuenta es irreversible. Todos tus datos se perderán permanentemente.";
+"delete_button" = "Eliminar";
+"cancel_button" = "Cancelar";
+"error_title" = "Error";
+"error_no_user" = "Ningún usuario ha iniciado sesión";
+"ok_button" = "OK";

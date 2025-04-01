@@ -213,7 +213,7 @@ struct SearchView: View {
                     Image(systemName: "arrow.up.circle.fill")
                         .resizable()
                         .frame(width: 40, height: 40)
-                        .foregroundColor(inputText.count < 5 ? .gray : .blue)
+                        .foregroundColor(inputText.count < 4 ? .gray : .blue)
                         .padding(.trailing, 16)
                 }
                 .disabled(inputText.count < 4)

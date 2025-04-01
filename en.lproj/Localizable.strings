@@ -1,3 +1,5 @@
+
+
 /*
  Localizable.strings
  Hermes
@@ -59,8 +61,7 @@
 "price_section_title" = "Price";
 "off_label" = "OFF";
 "legal_label" = "Legal";
-"chats_title" = "Chats";
-"chat_gpt_title" = "ChatGPT";
+"chat_gpt_title" = "Intelligent assistant";
 "chat_gpt_subtitle" = "Your AI-powered assistant";
 "profile_button" = "Profile";
 "profile_button_hint" = "Open user profile";
@@ -99,7 +100,6 @@
 "product_image_loaded" = "Product image loaded successfully";
 "product_image_failed" = "Failed to load product image";
 "loading_store_image" = "Loading store image...";
-"store_image" = "Store image";
 "store_image_expanded" = "Expanded store image";
 "store_image_failed" = "Failed to load store image";
 "store_name_label" = "Store name";
@@ -229,7 +229,6 @@
 "map_accessibility_label" = "Map displaying the user's location";
 "location_unavailable_message" = "Location data is unavailable.";
 "location_unavailable_accessibility" = "Accessible message for unavailable location";
-"privacy_message" = "Your privacy is respected, and no information is stored.";
 "privacy_message_accessibility" = "Accessible message about privacy";
 "edit_button_label" = "Edit";
 "edit_button_accessibility" = "Edit user information";
@@ -250,3 +249,13 @@
 "section_content_accessibility" = "Section content";
 "privacy_policy_title" = "Privacy Policy";
 "privacy_policy_description" = "We value your privacy and ensure your data is protected.";
+
+"settings_title" = "Settings";
+"account_deletion" = "Delete Account";
+"delete_confirmation_title" = "Are you sure?";
+"delete_confirmation_message" = "Deleting your account is irreversible. All your data will be permanently lost.";
+"delete_button" = "Delete";
+"cancel_button" = "Cancel";
+"error_title" = "Error";
+"error_no_user" = "No user is signed in";
+"ok_button" = "OK";
