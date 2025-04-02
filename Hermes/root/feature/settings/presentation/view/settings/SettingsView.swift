@@ -6,12 +6,16 @@
 //
 
 import FirebaseAuth
+import Foundation
+import AuthenticationServices
 import SwiftUI
+import CryptoKit
 
 struct SettingsView: View {
     @State private var showDeleteAlert = false
     @State private var showErrorAlert = false
     @State private var errorMessage = ""
+    @State private var isDeleting = false
     
     var body: some View {
         NavigationView {
@@ -34,6 +38,7 @@ struct SettingsView: View {
                     } label: {
                         Text(NSLocalizedString("account_deletion", comment: "Title for account deletion"))
                     }
+                    .disabled(isDeleting)
                 }
             }
             .navigationTitle(NSLocalizedString("settings_title", comment: "Title for the Settings view"))
@@ -42,7 +47,9 @@ struct SettingsView: View {
                     title: Text(NSLocalizedString("delete_confirmation_title", comment: "")),
                     message: Text(NSLocalizedString("delete_confirmation_message", comment: "")),
                     primaryButton: .destructive(Text(NSLocalizedString("delete_button", comment: ""))) {
-                        deleteAccount()
+                        Task {
+                            await deleteAccount()
+                        }
                     },
                     secondaryButton: .cancel(Text(NSLocalizedString("cancel_button", comment: "")))
                 )
@@ -52,62 +59,139 @@ struct SettingsView: View {
             }, message: {
                 Text(errorMessage)
             })
-            
         }
     }
     
-    func deleteAccount() {
+    @MainActor
+    func deleteAccount() async {
+        isDeleting = true
+        
         guard let user = Auth.auth().currentUser else {
-            errorMessage = "No user is signed in"
+            errorMessage = NSLocalizedString("error_no_user", comment: "Error when no user is found")
             showErrorAlert = true
+            isDeleting = false
             return
         }
         
-        user.delete { error in
-            if let error = error as NSError?, error.code == AuthErrorCode.requiresRecentLogin.rawValue {
-                reauthenticateAndDelete()
-            } else if let error = error {
+        do {
+            try await user.delete()
+            handleSuccessfulDeletion()
+        } catch {
+            let nsError = error as NSError
+            if nsError.code == AuthErrorCode.requiresRecentLogin.rawValue {
+                await reauthenticateAndDelete(user: user)
+            } else {
                 errorMessage = error.localizedDescription
                 showErrorAlert = true
-            } else {
-                print("Account deleted")
-                UserDefaults.standard.set(false, forKey: "isAuthenticated")
-                KeychainHelper.shared.delete(forKey: "jwt")
             }
+        }
+        
+        isDeleting = false
+    }
+    
+    @MainActor
+    func reauthenticateAndDelete(user: User) async {
+        do {
+            let helper = SignInWithAppleHelper()
+            let credential = try await helper.reauthenticateWithApple()
+            _ = try await user.reauthenticate(with: credential)
+            try await user.delete()
+            handleSuccessfulDeletion()
+        } catch {
+            errorMessage = error.localizedDescription
+            showErrorAlert = true
         }
     }
     
-    func reauthenticateAndDelete() {
-        guard let user = Auth.auth().currentUser else { return }
+    func handleSuccessfulDeletion() {
+        print("✅ Account deleted")
+        UserDefaults.standard.set(false, forKey: "isAuthenticated")
+        KeychainHelper.shared.delete(forKey: "jwt")
+        // Navigate to login screen if needed
+    }
+}
+
+
+@MainActor
+class SignInWithAppleHelper: NSObject, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    
+    private var continuation: CheckedContinuation<AuthCredential, Error>?
+    private var currentNonce: String?
+    
+    func reauthenticateWithApple() async throws -> AuthCredential {
+        let nonce = randomNonceString()
+        currentNonce = nonce
         
-        let provider = OAuthProvider(providerID: "apple.com")
-        provider.getCredentialWith(nil) { credential, error in
-            if let error = error {
-                errorMessage = error.localizedDescription
-                showErrorAlert = true
-                return
-            }
-            
-            if let credential = credential {
-                user.reauthenticate(with: credential) { authResult, error in
-                    if let error = error {
-                        errorMessage = error.localizedDescription
-                        showErrorAlert = true
-                        return
-                    }
-                    
-                    user.delete { error in
-                        if let error = error {
-                            errorMessage = error.localizedDescription
-                            showErrorAlert = true
-                        } else {
-                            print("Account deleted after re-auth")
-                            UserDefaults.standard.set(false, forKey: "isAuthenticated")
-                            KeychainHelper.shared.delete(forKey: "jwt")
-                        }
-                    }
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = sha256(nonce)
+        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.presentationContextProvider = self
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            self.continuation = continuation
+            controller.performRequests()
+        }
+    }
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow } ?? ASPresentationAnchor()
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard
+            let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
+            let idTokenData = appleIDCredential.identityToken,
+            let idTokenString = String(data: idTokenData, encoding: .utf8),
+            let nonce = currentNonce
+        else {
+            continuation?.resume(throwing: NSError(domain: "auth", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unable to retrieve Apple credentials."]))
+            return
+        }
+        
+        let credential = OAuthProvider.credential(
+            providerID: .apple,
+            idToken: idTokenString,
+            rawNonce: nonce,
+            accessToken: nil
+        )
+        
+        continuation?.resume(returning: credential)
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        continuation?.resume(throwing: error)
+    }
+    
+    // MARK: - Nonce utilities
+    
+    private func sha256(_ input: String) -> String {
+        let inputData = Data(input.utf8)
+        let hashed = SHA256.hash(data: inputData)
+        return hashed.map { String(format: "%02x", $0) }.joined()
+    }
+    
+    private func randomNonceString(length: Int = 32) -> String {
+        let charset: [Character] = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        var result = ""
+        var remainingLength = length
+        
+        while remainingLength > 0 {
+            let randoms = (0..<16).map { _ in UInt8.random(in: 0...255) }
+            randoms.forEach { random in
+                if remainingLength == 0 { return }
+                if random < charset.count {
+                    result.append(charset[Int(random)])
+                    remainingLength -= 1
                 }
             }
         }
+        
+        return result
     }
 }

@@ -257,3 +257,11 @@
 "error_title" = "Error";
 "error_no_user" = "Ningún usuario ha iniciado sesión";
 "ok_button" = "OK";
+
+"delete_confirmation_title" = "¿Estás seguro?";
+"delete_confirmation_message" = "Eliminar tu cuenta es irreversible.";
+"delete_button" = "Eliminar";
+"cancel_button" = "Cancelar";
+"error_title" = "Error";
+"ok_button" = "Aceptar";
+"error_no_user" = "No hay ningún usuario conectado actualmente.";
